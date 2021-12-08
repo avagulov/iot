@@ -9,18 +9,18 @@ const int SENSOR = D3;
 const int SERIAL_BAND = 9600;
 const int LOOP_DELAY = 1000;
 
-DHT dht(SENSOR, DHT22);
+DHT dht(SENSOR, DHT11);
 
 const char* SID1    = "TC139";
 const char* SID2    = "OnePlus";
 const char* PASSWORD = "9197615070";
 const String HOST = "185.165.162.35:8080";
 const int HOUSE_ID = 1;
-const int TEMP_SENSOR_ID = 1;
-const int HUM_SENSOR_ID = 2;
+const int TEMP_SENSOR_ID = 4;
+const int HUM_SENSOR_ID = 5;
 const String TEMP_POST_URL = "http://" + HOST + "/v1/telemetry/" + HOUSE_ID + "/" + TEMP_SENSOR_ID + "/measurements/";
 const String HUM_POST_URL = "http://" + HOST + "/v1/telemetry/" + HOUSE_ID + "/" + HUM_SENSOR_ID + "/measurements/";
-const int DEEP_SLEEP = 300e6; //300 cек
+const int DEEP_SLEEP = 1800e6; //1800 cек - 30 минут
 
 ESP8266WiFiMulti wifiMulti;
 
@@ -87,7 +87,7 @@ void loop() {
     ESP.deepSleep(DEEP_SLEEP);
   }
 
-  delay(LOOP_DELAY);
+  ESP.deepSleep(DEEP_SLEEP);
 }
 
 bool statusWiFi() {
